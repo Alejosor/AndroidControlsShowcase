@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -36,11 +38,17 @@ public class LoginActivity extends AppCompatActivity {
             String usuario = txtUsuario.getText().toString();
             String password = txtPassword.getText().toString();
 
+            HashMap <String, String> users = new HashMap<>();
+            users.put("admin", "1234");
+            users.put("diego17", "12345678");
+
             // Credenciales sencillas
-            if (usuario.equals("admin") && password.equals("1234")) {
+            if (users.containsKey(usuario) && users.get(usuario).equals(password)) {
                 onLoginSuccess();
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                txtUsuario.setText("");
+                txtPassword.setText("");
             }
         });
     }
