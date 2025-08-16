@@ -9,6 +9,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -21,6 +24,22 @@ public class LoginActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        EditText txtUsuario = findViewById(R.id.TxtUsuario);
+        EditText txtPassword = findViewById(R.id.txtPassword);
+        Button buttLogin = findViewById(R.id.buttLogin);
+
+        buttLogin.setOnClickListener(v -> {
+            String usuario = txtUsuario.getText().toString();
+            String password = txtPassword.getText().toString();
+
+            // Credenciales sencillas
+            if (usuario.equals("admin") && password.equals("1234")) {
+                onLoginSuccess();
+            } else {
+                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
