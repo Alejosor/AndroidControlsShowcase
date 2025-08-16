@@ -1,6 +1,8 @@
 package com.example.androidcontrols;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,23 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        Button btnLogout = findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(v -> {
+            SharedPreferences prefs1 = getSharedPreferences("user_session", MODE_PRIVATE);
+            prefs1.edit().remove("is_logged_in").apply();
+
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        Button btnMain = findViewById(R.id.btnMain);
+        ImageView imgPortada = findViewById(R.id.imgPortada);
+
+        btnMain.setOnClickListener(v -> {
+            imgPortada.setVisibility(ImageView.VISIBLE);
         });
     }
 }
