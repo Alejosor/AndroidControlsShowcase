@@ -18,6 +18,11 @@ import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * Método principal que se ejecuta al crear la actividad de login.
+     * Inicializa la interfaz y gestiona el proceso de autenticación.
+     * @param savedInstanceState Estado guardado de la actividad
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -53,7 +58,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // Método que se llama cuando el usuario inicia sesión correctamente
+    /**
+     * Método que se llama cuando el usuario inicia sesión correctamente.
+     * Guarda la sesión y redirige al MainActivity.
+     */
     private void onLoginSuccess() {
         SharedPreferences prefs = getSharedPreferences("user_session", MODE_PRIVATE);
         prefs.edit().putBoolean("is_logged_in", true).apply();
